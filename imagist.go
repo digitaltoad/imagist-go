@@ -1,6 +1,7 @@
 package main
 
 import (
+  "flag"
   "net/http"
   "github.com/gorilla/mux"
   "fmt"
@@ -12,7 +13,11 @@ import (
   "image/jpeg"
   // "code.google.com/p/freetype-go/freetype"
   "strconv"
-  "os"
+)
+
+var (
+  port = flag.String("port", "9999", "web server port")
+  fontFile = flag.String("fontFile", "helvetica.ttf", "filename of the font used for placeholder text")
 )
 
 func PlaceholderHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,20 +49,15 @@ func PlaceholderHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+  flag.Parse()
   r := mux.NewRouter()
   r.HandleFunc("/{h:[0-9]+}x{w:[0-9]+}.{f:(png|jpg)}", PlaceholderHandler).
     Methods("GET")
 
   http.Handle("/", r)
 
-  port := os.Getenv("PORT")
-
-  if port == "" {
-    port = "9999"
-  }
-
-  fmt.Println("Listening on PORT "+port+"...")
-  err := http.ListenAndServe(":"+port, nil)
+  fmt.Println("Listening on PORT " + *port + "...")
+  err := http.ListenAndServe(":" + *port, nil)
   if err != nil {
     log.Fatal("ListenAndServe: ", err)
   }

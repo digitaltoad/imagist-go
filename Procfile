@@ -1,1 +1,1 @@
-web: imagist-go
+web: imagist-go --port=$PORT
