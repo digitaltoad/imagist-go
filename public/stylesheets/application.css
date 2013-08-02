@@ -1306,20 +1306,14 @@ blockquote p {
     display: inherit !important; } }
 
 .placeholder-example {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.placeholder-example .img-wrap {
-  box-shadow: 0 1px 0 #73a7d0;
-  display: inline-block;
   background: #fff;
   border-radius: 4px;
-  max-width: 440px;
+  margin: 40px auto;
+  text-align: center;
+  width: 440px;
 }
 
-.placeholder-example .img-wrap img {
+.placeholder-example img {
   margin: 20px;
 }
 
