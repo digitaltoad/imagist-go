@@ -157,6 +157,11 @@ func PlaceholderHandler(w http.ResponseWriter, r *http.Request) {
     return
   }
 
+  if height > 2000 || width > 2000 {
+    http.Error(w, "Image too big!", http.StatusBadRequest)
+    return
+  }
+
   m := Placeholder{Height: height, Width: width}
   err = m.GenerateImage()
   if err != nil {
