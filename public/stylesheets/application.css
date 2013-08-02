@@ -1311,6 +1311,7 @@ blockquote p {
   margin: 40px auto;
   text-align: center;
   width: 440px;
+  overflow: hidden;
 }
 
 .placeholder-example img {
